@@ -24,7 +24,38 @@ organisms = [
     Species(name="sockeye salmon", latin_name="Oncorhynchus nerka", file_name="sockeye_salmon"),
     Species(name="guppy", latin_name="Poecilia reticulata", file_name="guppy"),
     Species(name="clown anemonefish", latin_name="Amphiprion ocellaris", file_name="clown_anemonefish"),
-    Species(name="tiger tale seahorse", latin_name="Hippocampus comes", file_name="tiger_tail_seahorse")
+    Species(name="tiger tale seahorse", latin_name="Hippocampus comes", file_name="tiger_tail_seahorse"),
+    
+    Species(name="spotted gar", latin_name="Lepisosteus oculatus", file_name="spotted_gar"),
+    Species(name="northern pike", latin_name="Esox lucius", file_name="northern_pike"),
+    Species(name="Amazon molly", latin_name="Poecilia formosa", file_name="amazon_molly"),
+    Species(name="Asian bonytongue", latin_name="Scleropages formosus", file_name="asian_bonytongue"),
+    Species(name="Atlantic cod", latin_name="Gadus morhua", file_name="atlantic_cod"),
+    Species(name="ballan wrasse", latin_name="Labrus bergylta", file_name="ballan_wrasse"),
+    Species(name="barramundi perch", latin_name="Lates calcarifer", file_name="barramundi_perch"),
+    Species(name="bicolor damselfish", latin_name="Stegastes partitus", file_name="bicolor_damselfish"),
+    Species(name="Burton's mouthbrooder", latin_name="Haplochromis burtoni", file_name="burtons_mouthbrooder"),
+    Species(name="climbing perch", latin_name="Anabas testudineus", file_name="climbing_perch"),
+    Species(name="common carp", latin_name="Cyprinus carpio", file_name="common_carp"),
+    Species(name="denticle herring", latin_name="Denticeps clupeoides", file_name="denticle_herring"),
+    Species(name="eastern happy", latin_name="Astatotilapia calliptera", file_name="eastern_happy"),
+    Species(name="flier cichlid", latin_name="Archocentrus centrarchus", file_name="flier_cichlid"),
+    Species(name="greater amberjack", latin_name="Seriola dumerili", file_name="greater_amberjack"),
+    Species(name="green swordtail", latin_name="Xiphophorus hellerii", file_name="green_swordtail"),
+    Species(name="Japanese flounder", latin_name="Paralichthys olivaceus", file_name="japanese_flounder"),
+    Species(name="Mexican tetra", latin_name="Astyanax mexicanus", file_name="mexican_tetra"),
+    Species(name="Monterrey platyfish", latin_name="Xiphophorus couchianus", file_name="monterrey_platyfish"),
+    Species(name="orangethroat darter", latin_name="Etheostoma spectabile", file_name="orangethroat_darter"),
+    Species(name="red-bellied piranha", latin_name="Pygocentrus nattereri", file_name="red_bellied_piranha"),
+    Species(name="reedfish", latin_name="Erpetoichthys calabaricus", file_name="reedfish"),
+    Species(name="sailfin molly", latin_name="Poecilia latipinna", file_name="sailfin_molly"),
+    Species(name="Siamese fighting fish", latin_name="Betta splendens", file_name="siamese_fighting_fish"),
+    Species(name="southern platyfish", latin_name="Xiphophorus maculatus", file_name="southern_platyfish"),
+    Species(name="spiny chromis", latin_name="Acanthochromis polyacanthus", file_name="spiny_chromis"),
+    Species(name="torafugu", latin_name="Takifugu rubripes", file_name="torafugu"),
+    Species(name="turqoise killfish", latin_name="Nothobranchius furzeri", file_name="turqoise_killfish"),
+    Species(name="yellow catfish", latin_name="Tachysurus fulvidraco", file_name="yellow_catfish"),
+    Species(name="zebra mbuna", latin_name="Maylandia zebra", file_name="zebra_mbuna")
 ]
 
 #    - Compute DNA and Protein alignments for every pair of consecutive species and 
@@ -92,5 +123,25 @@ graph.title('DNA/Protein Alignment Identity Percentages vs. CUB Differences Evol
 graph.xlabel("Differences of CUB/CAI Values per Pair of Species")
 graph.ylabel("Identity Percentages per Pair of Species")
 graph.legend()
-
 graph.show()
+
+#
+# CORRELATION ANALYSIS
+#
+
+# scatter plot the DNA_IDENTITY and PROT_IDENTITY data sets in order to explore their correlation
+graph.scatter(DNA_IDENTITY, PROT_IDENTITY)
+graph.show()
+
+# compute a couple of Correlation Coefficients to support conclusions from scatter plot above
+
+# calculate Pearson's correlation
+from scipy.stats import pearsonr
+pearson_correlation, _ = pearsonr(DNA_IDENTITY, PROT_IDENTITY)
+print('Pearson\'s correlation: %.3f' % pearson_correlation)
+
+# calculate Spearman's correlation coefficient
+from scipy.stats import spearmanr
+spearman_correlation, _ = spearmanr(DNA_IDENTITY, PROT_IDENTITY)
+print('Spearman\'s correlation: %.3f' % spearman_correlation)
+print("")
